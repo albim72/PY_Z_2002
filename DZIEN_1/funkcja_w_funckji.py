@@ -36,6 +36,25 @@ print(rejestracja(13)())
 
 #przykład 3
 
+def startstop(funkcja):
+    def wrapper(*args):
+        print("rozpoczęcie procesu...")
+        funkcja(*args)
+        print("zakończenie procesu...")
+    return wrapper
+
+def zawijanie(czego):
+    print(f"zawijanie {czego} w sreberka...")
+
+zw = startstop(zawijanie)
+zw("czekoladek")
+
+@startstop
+def dmuchanie(czego):
+    print(f"dmuchanie {czego} w urodziny...")
+
+
+dmuchanie("świeczek")
 
 
 
