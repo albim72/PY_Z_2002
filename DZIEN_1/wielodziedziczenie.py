@@ -9,9 +9,21 @@ class Pierwsza:
 
     def policz(self):
         return self.x*self.y
+    
+class Tajna:
+    def __init__(self,paleta):
+        self.paleta = paleta
+        self.kolor = 'black'
+        
+    def printcolor(self):
+        return f"kolor: {self.kolor}, paleta: {self.paleta}"
+    
+    def setcolor(self,nkolor):
+        self.kolor = nkolor
 
-class Dodatkowa:
-    def __init__(self,h,k):
+class Dodatkowa(Tajna):
+    def __init__(self,h,k,paleta):
+        super().__init__(paleta)
         self.h=h
         self.k=k
         self.dodatkowacr()
