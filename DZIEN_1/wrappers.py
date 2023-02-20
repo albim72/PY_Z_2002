@@ -53,4 +53,12 @@ komunikat('xyz',4)
 
 komunikat(6,9.9)
 
+a:int = 9
+print(a)
+print(type(a))
 
+
+
+a = "jedynka"
+print(a)
+print(type(a))
