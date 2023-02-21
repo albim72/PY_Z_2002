@@ -37,7 +37,7 @@ class Akwizytor:
         return self._nr_ubezpieczenia
 
     @nr_ubezpieczenia.setter
-    def imie(self, nr_ubezpieczenia):
+    def nr_ubezpieczenia(self, nr_ubezpieczenia):
         self._nr_ubezpieczenia = nr_ubezpieczenia
 
     @property
@@ -62,7 +62,7 @@ class Akwizytor:
 
     def zarobek(self):
         return self.sprzedaz*(self.prowizja/Decimal('100.00'))
-    
+
     def __repr__(self):
         return (f"Akwizytor: {self.imie}, {self.nazwisko}\n"
                 f"numer ubezpieczenia: {self.nr_ubezpieczenia}\n"
