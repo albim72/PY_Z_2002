@@ -74,3 +74,9 @@ klima.text = 'FGR425435'
 
 pod = SubElement(wyp_dod,'poduszki_dod')
 pod.text = '4'
+
+
+print(pretty(top))
+with open("subaru_autokomis.xml","a",encoding="utf-8") as f:
+    f.write(pretty(top))
+
