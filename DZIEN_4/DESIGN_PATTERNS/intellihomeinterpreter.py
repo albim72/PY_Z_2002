@@ -14,7 +14,7 @@ class Gate:
     def close(self):
         print('closing the gate')
         self.is_open = False
-        
+
 class Garage:
     def __init__(self):
         self.is_open = False
@@ -29,7 +29,7 @@ class Garage:
     def close(self):
         print('closing the garage')
         self.is_open = False
-        
+
 class Aircondition:
     def __init__(self):
         self.is_on = False
@@ -60,3 +60,34 @@ class Heating:
     def turn_off(self):
         print('turning off the heating')
         self.is_on = False
+
+
+class Boiler:
+    def __init__(self):
+        self.temperature = 83
+
+    def __str__(self):
+        return f'boiler temperature: {self.temperature} C'
+
+    def increase_teperature(self,amount):
+        print(f"increasing the boiler's temperature by {amount} C")
+        self.temperature += amount
+
+    def decrease_teperature(self, amount):
+        print(f"decreasing the boiler's temperature by {amount} C")
+        self.temperature -= amount
+        
+class Fridge:
+    def __init__(self):
+        self.temperature = 2
+
+    def __str__(self):
+        return f'fridge temperature: {self.temperature} C'
+
+    def increase_teperature(self,amount):
+        print(f"increasing the fridges's temperature by {amount} C")
+        self.temperature += amount
+
+    def decrease_teperature(self, amount):
+        print(f"decreasing the fridges's temperature by {amount} C")
+        self.temperature -= amount
