@@ -31,7 +31,7 @@ class Car:
 
 class Builder(ABC):
     @abstractmethod
-    def getWeel(self):pass
+    def getWheel(self):pass
 
     @abstractmethod
     def getEngine(self): pass
@@ -62,7 +62,7 @@ class Director:
         return car
 
 class Jeep(Builder):
-    def getWeel(self):
+    def getWheel(self):
         wheel = Wheel()
         wheel.size = 22
         return wheel
@@ -76,7 +76,7 @@ class Jeep(Builder):
         body = Body()
         body.shape = "SUV"
         return body
-    
+
 def main():
     jeepBuilder = Jeep()
     director = Director()
