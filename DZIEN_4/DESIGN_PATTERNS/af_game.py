@@ -47,14 +47,14 @@ class Wizard:
         act = obstacle.action()
         msg = f'{self} the Wizard battles against {obstacle} and {act}'
         print(msg)
-        
+
 class Ork:
     def __str__(self):
         return 'an evil ork'
 
     def action(self):
         return 'kills it'
-    
+
 class WizardWorld:
     def __init__(self,name):
         print(self)
@@ -68,3 +68,14 @@ class WizardWorld:
 
     def make_obstacle(self):
         return Ork()
+    
+    
+#Game environment
+
+class GameEnvironment:
+    def __init__(self,factory):
+        self.hero = factory.make_character()
+        self.obstacle = factory.make_obstacle()
+        
+    def play(self):
+        self.hero.interact_with(self.obstacle)
