@@ -42,25 +42,25 @@ class Builder(ABC):
 
 class Director:
     __builder = None
-    
+
     def setBuilder(self,builder):
         self.__builder = builder
-    
+
     def getCar(self):
         car  = Car()
         body = self.__builder.getBody()
         car.setBody(body)
-        
+
         engine = self.__builder.getEngine()
         car.setEngine(engine)
-        
+
         i=0
         while i<4:
             wheel = self.__builder.getWheel()
             car.attachWheel(wheel)
             i+=1
         return car
-    
+
 class Jeep(Builder):
     def getWeel(self):
         wheel = Wheel()
@@ -76,3 +76,12 @@ class Jeep(Builder):
         body = Body()
         body.shape = "SUV"
         return body
+    
+def main():
+    jeepBuilder = Jeep()
+    director = Director()
+    print("samochód -> Jeep Cherokee")
+    director.setBuilder(jeepBuilder)
+    jeep = director.getCar()
+    jeep.specification()
+    print("\n")
