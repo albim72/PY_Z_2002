@@ -91,8 +91,8 @@ class Fridge:
     def decrease_teperature(self, amount):
         print(f"decreasing the fridges's temperature by {amount} C")
         self.temperature -= amount
-        
-        
+
+
 def main():
     word = Word(alphanums)
     command = Group(OneOrMore(word))
@@ -100,21 +100,21 @@ def main():
     device = Group(OneOrMore(word))
     argument = Group(OneOrMore(word))
     event = command + token + device + Optional(token+argument)
-    
+
     gate = Gate()
     garage = Garage()
     airco = Aircondition()
     heating = Heating()
     boiler = Boiler()
     fridge = Fridge()
-    
+
     tests = ('open -> gate',
              'close -> garage',
              'turn on -> air condition',
              'turn off -> heating',
              'increase -> boiler temperature -> 5 degrees',
              'decrease -> fridge temperature -> 2 degrees')
-    
+
     open_actions = {'gate':gate.open,
                     'garage':garage.open,
                     'air condition':airco.turn_on,
@@ -128,4 +128,32 @@ def main():
                     'heating': heating.turn_off,
                     'boiler temperature': boiler.decrease_teperature,
                     'fridge temperature': fridge.decrease_teperature}
-    
+
+    for t in tests:
+        if len(event.parseString(t)) ==2:
+            cmd,dev = event.parseString(t)
+            cmd_str, dev_str = ' '.join(cmd), ' '.join(dev)
+            if 'open' in cmd_str or 'turn on' in cmd_str:
+                open_actions[dev_str]()
+            elif 'close' in cmd_str or 'turn off' in cmd_str:
+                close_actions[dev_str]()
+
+        elif len(event.parseString(t)) == 3:
+            cmd,dev,arg = event.parseString(t)
+            cmd_str = ' '.join(cmd)
+            dev_str = ' '.join(dev)
+            arg_str = ' '.join(arg)
+            num_arg = 0
+            try:
+                num_arg = int(arg_str.split()[0])
+            except ValueError as err:
+                print(f"expected number but go: '{arg_str[0]}'")
+
+            if 'increase' in cmd_str and num_arg > 0:
+                open_actions[dev_str](num_arg)
+            elif 'decrease' in cmd_str and num_arg > 0:
+                close_actions[dev_str](num_arg)
+
+
+if __name__ == '__main__':
+    main()
